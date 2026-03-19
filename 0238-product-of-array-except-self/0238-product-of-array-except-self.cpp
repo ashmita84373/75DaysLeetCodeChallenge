@@ -1,21 +1,24 @@
+#include <vector>
+using namespace std;
+
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
         int n = nums.size();
         vector<int> answer(n, 1);
 
-        // Step 1: Prefix product (left side)
-        int prefix = 1;
+        // Left product
+        int left = 1;
         for (int i = 0; i < n; i++) {
-            answer[i] = prefix;
-            prefix *= nums[i];
+            answer[i] = left;
+            left *= nums[i];
         }
 
-        // Step 2: Suffix product (right side)
-        int suffix = 1;
+        // Right product
+        int right = 1;
         for (int i = n - 1; i >= 0; i--) {
-            answer[i] *= suffix;
-            suffix *= nums[i];
+            answer[i] *= right;
+            right *= nums[i];
         }
 
         return answer;
